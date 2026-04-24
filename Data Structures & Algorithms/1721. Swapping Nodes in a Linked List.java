@@ -9,43 +9,29 @@
  * }
  */
 class Solution {
-
-    private ListNode reverseList(ListNode head) {
-
-        ListNode prev = null;
-        while(head != null) {
-            ListNode temp = head.next;
-            head.next = prev;
-            prev = head;
-            head = temp;
-        }
-
-        return prev;
-    }
     public ListNode swapNodes(ListNode head, int k) {
-        
-        ListNode dummy = new ListNode(0 , head);
-
-        head = reverseList(head);
-
-        ListNode p1 = head;
+        ListNode f = head , s = head;
 
         for(int i = 0 ; i < k - 1 ; i++) {
-            p1 = p1.next;
+            f = f.next;;
         }
 
-        head = reverseList(head);
+        while(f.next != null) {
+            
+            f = f.next;
+            s = s.next;
+        }
+
+        ListNode iter = head;
 
         for(int i = 0 ; i < k - 1 ; i++) {
-            head = head.next;
+            iter = iter.next;;
         }
 
-        int temp = head.val;
-        head.val = p1.val;
-        p1.val = temp;
+        int temp = iter.val;
+        iter.val = s.val;
+        s.val = temp;
 
-        return dummy.next;
-
-
+        return head;
     }
 }
