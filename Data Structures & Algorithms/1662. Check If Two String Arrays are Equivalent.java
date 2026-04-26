@@ -1,22 +1,31 @@
 class Solution {
     public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
-        Stack<Character> stk1 = new Stack<>();
-        Stack<Character> stk2 = new Stack<>();
+        int w1 = 0 , w2 =0;
+        int i = 0 , j = 0;
 
-        for(String w : word1) {
+        while(w1 < word1.length && w2 < word2.length) {
 
-            for(Character c : w.toCharArray()) {
-                stk1.push(c);
+            if(word1[w1].charAt(i) != word2[w2].charAt(j)) {
+
+                return false;
+            }
+
+            i++;
+            j++;
+            if(i == word1[w1].length()) {
+                w1++;
+                i = 0;
+            }
+             if(j == word2[w2].length()) {
+                w2++;
+                j = 0;
             }
         }
         
-
-        for(String w : word2) {
-
-            for(Character c : w.toCharArray()) {
-                stk2.push(c);
-            }
+        if(w1 != word1.length || w2 != word2.length) {
+            return false;
         }
-        return stk1.equals(stk2);
+
+        return true;
     }
 }
